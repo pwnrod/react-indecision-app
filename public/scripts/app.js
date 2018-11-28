@@ -42,7 +42,7 @@ var Student = function (_Person) {
     function Student(name, age, major) {
         _classCallCheck(this, Student);
 
-        var _this = _possibleConstructorReturn(this, (Student.__proto__ || Object.getPrototypeOf(Student)).call(this));
+        var _this = _possibleConstructorReturn(this, (Student.__proto__ || Object.getPrototypeOf(Student)).call(this, name, age));
 
         _this.major = major;
         return _this;
@@ -56,15 +56,52 @@ var Student = function (_Person) {
     }, {
         key: 'getDescription',
         value: function getDescription() {
-            return _get(Student.prototype.__proto__ || Object.getPrototypeOf(Student.prototype), 'getDescription', this).call(this);
+            var description = _get(Student.prototype.__proto__ || Object.getPrototypeOf(Student.prototype), 'getDescription', this).call(this);
+
+            if (this.hasMajor()) {
+                description += ' Their major is ' + this.major + '.';
+            }
+
+            return description;
         }
     }]);
 
     return Student;
 }(Person);
 
-var me = new Student('Caylin James', 28, 'Computer Science');
-console.log(me.getDescription());
+var Traveler = function (_Person2) {
+    _inherits(Traveler, _Person2);
 
-var other = new Student();
-console.log(other.getDescription());
+    function Traveler(name, age, homeLocation) {
+        _classCallCheck(this, Traveler);
+
+        var _this2 = _possibleConstructorReturn(this, (Traveler.__proto__ || Object.getPrototypeOf(Traveler)).call(this, name, age));
+
+        _this2.homeLocation = homeLocation;
+        return _this2;
+    }
+
+    _createClass(Traveler, [{
+        key: 'hasLocation',
+        value: function hasLocation() {
+            return !!this.homeLocation;
+        }
+    }, {
+        key: 'getGreeting',
+        value: function getGreeting() {
+            var greeting = _get(Traveler.prototype.__proto__ || Object.getPrototypeOf(Traveler.prototype), 'getGreeting', this).call(this);
+
+            if (this.hasLocation()) greeting += ' I\'m visiting from ' + this.homeLocation;
+
+            return greeting;
+        }
+    }]);
+
+    return Traveler;
+}(Person);
+
+var me = new Traveler('Caylin James', 28, 'Louisville');
+console.log(me.getGreeting());
+
+var other = new Traveler();
+console.log(other.getGreeting());
