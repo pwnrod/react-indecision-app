@@ -4,7 +4,7 @@ import AddOption from './AddOption';
 import Options from './Options';
 import Action from './Action';
 
-export defaul class IndecisionApp extends React.Component {
+export default class IndecisionApp extends React.Component {
     constructor(props) {
         super(props);
         this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
